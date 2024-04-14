@@ -5,10 +5,14 @@
 
 import java.io.*;
 import java.util.*;
+
+import javax.swing.event.SwingPropertyChangeSupport;
+
 import java.text.*;
 
 
-public class Search {
+public class Search 
+{
 
 /*******************************************************************************
 *                           INSTANCE VARIABLES                                 *
@@ -73,8 +77,10 @@ public class Search {
 
 	public static void main(String[] args) throws java.io.IOException{
 
-		Calendar dateAndTime = Calendar.getInstance(); 
-		Date startTime = dateAndTime.getTime();
+		//Calendar dateAndTime = Calendar.getInstance(); 
+		//Date startTime = dateAndTime.getTime();
+
+		long startTime = System.currentTimeMillis();
 
 	//  Read Parameter File
 		System.out.println("\nParameter File Name is: " + args[0] + "\n");
@@ -394,11 +400,12 @@ public class Search {
 		summaryOutput.write("\n");
 		summaryOutput.close();
 
+
 		System.out.println();
-		System.out.println("Start:  " + startTime);
-		dateAndTime = Calendar.getInstance(); 
-		Date endTime = dateAndTime.getTime();
-		System.out.println("End  :  " + endTime);
+		//System.out.println("Start:  " + startTime);
+		//dateAndTime = Calendar.getInstance(); 
+		//Date endTime = dateAndTime.getTime();
+		//ystem.out.println("End  :  " + endTime);
 
 		for (int i = 0; i < Parameters.geneSize; i++) {
 			System.out.println(Chromo.cities.get(i).x + " "+ Chromo.cities.get(i).y);
@@ -411,11 +418,18 @@ public class Search {
 		// }
 		// System.out.println(bestOverAllChromo.chromo.size());
 
+		System.out.println();
 		System.out.println("ORIGIN POINT");
 		System.out.println(Chromo.origin.x + " "+ Chromo.origin.y);
 
 
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		System.out.println("Execution Time: " + executionTime + " milliseconds");
 
+		Runtime runtime = Runtime.getRuntime();
+		long usedMemory = runtime.totalMemory() - runtime.freeMemory();
+		System.out.println("Used Memory: " + usedMemory + " bytes");
 
 	} // End of Main Class
 
